@@ -13,19 +13,19 @@ import PrivateRoute from "../helpers/PrivateRoute";
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <Switch>
-          <PrivateRoute exact path="/" component={HomePage} />
-          <Route path="/signup">
-            <SignUp />
-          </Route>
-          <Route path="/login">
-            <UserLogin />
-          </Route>
-        </Switch>
-      </Router>
-    </AuthProvider>
+      <AuthProvider>
+        <Router>
+          <Switch>
+            <PrivateRoute exact path="/" component={HomePage} />
+            <Route path="/signup">
+              <SignUp />
+            </Route>
+            <Route path="/login">
+              <UserLogin />
+            </Route>
+          </Switch>
+        </Router>
+      </AuthProvider>
   );
 }
 

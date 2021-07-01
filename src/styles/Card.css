@@ -1,0 +1,21 @@
+.card {
+  width: 25%;
+  height:50%;
+  border-radius: 16px !important;
+  text-align: center;
+  box-shadow: rgb(0 0 0 / 48%) -40px 40px 80px 0px;
+  background-color: #e6e6e6;
+  margin: 20px;
+}
+
+.card-img{
+    border-radius: 16px !important;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.card-text{
+    color: white;
+    font-size: 1vw;
+}
