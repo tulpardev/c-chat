@@ -6,7 +6,7 @@ import "../../styles/HomePage.css";
 import historical_pic from "../../utils/historical_pic.jpg";
 import sport_pic from "../../utils/sport_pic.jpg";
 import movie_pic from "../../utils/movie_pic.jpg";
-import sofware_pic from "../../utils/sofware_pic.jpg"
+import sofware_pic from "../../utils/sofware_pic.jpg";
 import ChatPage from "./ChatPage";
 function HomePage() {
   const { currentuser, logout } = useAuth();
@@ -24,10 +24,18 @@ function HomePage() {
   }
   return (
     <div className="homepage">
-        <CardBox picture={historical_pic} roomName="TARİH" path={"historical-room"} />
-        <CardBox picture={sport_pic} roomName="SPOR" path={"sport-room"}/>
-        <CardBox picture={movie_pic} roomName="FİLM" path={"movie-room"} />
-        <CardBox picture={sofware_pic} roomName="YAZILIM" path={"software-room"} />
+      <CardBox
+        picture={historical_pic}
+        roomName="TARİH"
+        path={"historical-room"}
+      />
+      <CardBox picture={sport_pic} roomName="SPOR" path={"sport-room"} />
+      <CardBox picture={movie_pic} roomName="FİLM" path={"movie-room"} />
+      <CardBox
+        picture={sofware_pic}
+        roomName="YAZILIM"
+        path={"software-room"}
+      />
     </div>
   );
 }

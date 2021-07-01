@@ -3,7 +3,6 @@
   justify-content: center;
   flex-direction: column;
   text-align: center;
-  background-color: #e6e6e6;
 }
 .chatpage__header {
   display: flex;
@@ -23,7 +22,6 @@
   bottom: 0;
   z-index: 1;
   width: 100%;
-  margin-bottom: 15px;
   padding-right: 10px;
   padding-left: 10px;
 }
@@ -31,4 +29,8 @@
 .chatpage__header__title {
   font-size: 2vh !important;
   color: #f9af1b;
+}
+
+.chatpage__form{
+  background-color:azure;
 }

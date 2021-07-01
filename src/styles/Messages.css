@@ -1,25 +1,24 @@
 .message {
-    padding: 10px;
-    margin: 10px;
-    width: fit-content;
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-  }
-  
-  .message__user {
-    margin-left: auto;
-    color: white;
-    text-align: right !important;
-  }
-  
-  .message__userCard {
-    background-color: coral !important;
-    border-radius: 16px !important;
-    box-shadow: rgb(0 0 0 / 48%) -40px 40px 80px 0px;
-  }
-  
-  .message__guestCard {
-      background-color: yellowgreen !important;
-      border-radius: 16px !important;
-      box-shadow: rgb(0 0 0 / 48%) -40px 40px 80px 0px;
-  }
+  padding: 10px;
+  margin: 10px;
+  width: fit-content;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.message__user {
+  margin-left: auto;
+  color: white;
+}
+
+.message__userCard {
+  background-color: coral !important;
+  border-radius: 16px !important;
+  box-shadow: rgb(0 0 0 / 48%) -40px 40px 80px 0px;
+}
+
+.message__guestCard {
+  background-color: yellowgreen !important;
+  border-radius: 16px !important;
+  box-shadow: rgb(0 0 0 / 48%) -40px 40px 80px 0px;
+}
