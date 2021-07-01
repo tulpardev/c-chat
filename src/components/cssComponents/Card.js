@@ -5,8 +5,8 @@ function CardBox({ picture, roomName, path }) {
   return (
     <div className="card">
       {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
-      <img src={picture} class="card-img" alt="picture" />
-      <div class="card-img-overlay">
+      <img src={picture} className="card-img" alt="picture" />
+      <div className="card-img-overlay">
         <p className="card-text">{roomName}</p>
         {/* eslint-disable-next-line jsx-a11y/anchor-has-content */}
         <a href={`/${path}`} className="stretched-link" />

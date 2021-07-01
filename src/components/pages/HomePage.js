@@ -1,27 +1,12 @@
-import React, { useState } from "react";
-import { useAuth } from "../../contexts/AuthContext";
-import { useHistory } from "react-router-dom";
+import React from "react";
 import CardBox from "../cssComponents/Card";
 import "../../styles/HomePage.css";
 import historical_pic from "../../utils/historical_pic.jpg";
 import sport_pic from "../../utils/sport_pic.jpg";
 import movie_pic from "../../utils/movie_pic.jpg";
 import sofware_pic from "../../utils/sofware_pic.jpg";
-import ChatPage from "./ChatPage";
-function HomePage() {
-  const { currentuser, logout } = useAuth();
-  const [error, setError] = useState("");
-  const history = useHistory();
 
-  async function handleLogout() {
-    setError("");
-    try {
-      await logout();
-      history.push("/login");
-    } catch {
-      setError("Çıkış yapılamadı");
-    }
-  }
+function HomePage() {
   return (
     <div className="homepage">
       <CardBox
