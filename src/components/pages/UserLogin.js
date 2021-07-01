@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import "../../styles/UserLogin.css";
 import cchatLogo from "../../utils/cchatLogo.png";
+import { useAuth } from "../../contexts/AuthContext";
+import { useHistory } from "react-router-dom";
 
 function UserLogin() {
   const [submitted, setSubmitted] = useState(false);
-  const [userData, setUserData] = useState({ name: "", password: "" });
+  const [userData, setUserData] = useState({ email: "", password: "" });
+  const { login } = useAuth();
+  const [error, setError] = useState("");
+  const [loading, setloading] = useState(false);
+  const history = useHistory();
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -14,12 +20,19 @@ function UserLogin() {
     }));
   }
 
-  function handleSave(event) {
+  async function handleSave(event) {
     event.preventDefault();
     setSubmitted(true);
-    if (userData.name && userData.password) {
-      console.log(userData);
+    console.log(userData);
+    try {
+      setError("");
+      setloading(true);
+      await login(userData.email, userData.password);
+      history.push("/");
+    } catch {
+      setError("Kullanıcı adı veya parola yanlış");
     }
+    setloading(false);
   }
   return (
     <div className="user__login">
@@ -35,9 +48,9 @@ function UserLogin() {
                       src={cchatLogo}
                       alt="cchatLogo"
                     />
-                    {alert.message && (
-                      <div className={`alert ${alert.type}`}>
-                        {alert.message}
+                    {error && (
+                      <div className="alert alert-danger" role="alert">
+                        {error}
                       </div>
                     )}
                   </div>
@@ -48,19 +61,19 @@ function UserLogin() {
                           Kullanıcı Adı
                         </label>
                         <input
-                          type="text"
+                          type="email"
                           className="form-control border border-danger"
-                          name="name"
-                          value={userData.name}
+                          name="email"
+                          value={userData.email}
                           onChange={handleChange}
                           // eslint-disable-next-line react/jsx-no-duplicate-props
                           className={
                             "form-control" +
-                            (submitted && !userData.name ? " is-invalid" : "")
+                            (submitted && !userData.email ? " is-invalid" : "")
                           }
                         />
 
-                        {submitted && !userData.name && (
+                        {submitted && !userData.email && (
                           <div className="invalid-feedback">
                             Kullanıcı adı gereklidir!
                           </div>
@@ -90,12 +103,18 @@ function UserLogin() {
                           </div>
                         )}
                       </div>
-                      <div className="form-group-signup">
-                        <button className="btn btn-primary">Giriş Yap</button>
+                      <div className="form-group-login-signup">
+                        <button type="submit" className="btn btn-primary">
+                          Giriş Yap
+                        </button>
                         <p className="text-secondary font-italic">
                           veya hesabın yoksa
                         </p>
-                        <a href="/signup" role="button" className="btn btn-outline-secondary btn__signup">
+                        <a
+                          href="/signup"
+                          role="button"
+                          className="btn btn-outline-secondary btn__signup"
+                        >
                           Kayıt Ol
                         </a>
                       </div>

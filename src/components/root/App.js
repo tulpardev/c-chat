@@ -8,17 +8,20 @@ import {
 import UserLogin from "../pages/UserLogin";
 import SignUp from "../pages/SignUp";
 import { AuthProvider } from "../../contexts/AuthContext";
+import HomePage from "../pages/HomePage";
+import PrivateRoute from "../helpers/PrivateRoute";
 
 function App() {
   return (
     <AuthProvider>
       <Router>
         <Switch>
-          <Route exact path="/">
-            <UserLogin />
-          </Route>
+          <PrivateRoute exact path="/" component={HomePage} />
           <Route path="/signup">
             <SignUp />
+          </Route>
+          <Route path="/login">
+            <UserLogin />
           </Route>
         </Switch>
       </Router>

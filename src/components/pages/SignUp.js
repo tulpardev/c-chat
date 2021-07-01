@@ -1,28 +1,24 @@
 import React, { useState, useRef } from "react";
 import cchatLogo from "../../utils/cchatLogo.png";
 import { useAuth } from "../../contexts/AuthContext";
+import "../../styles/UserLogin.css";
+import { useHistory } from "react-router-dom";
 
 function SignUp() {
   const [submitted, setSubmitted] = useState(false);
-  const [userData, setUserData] = useState({ name: "", password: "" });
   const { signup } = useAuth();
   const [error, setError] = useState("");
   const [loading, setloading] = useState(false);
+  const history = useHistory();
 
-  const userNameRef = useRef();
+  const emailRef = useRef();
   const passwordRef = useRef();
   const passwordVerificationRef = useRef();
 
-  function handleChange(event) {
-    const { name, value } = event.target;
-    setUserData((previousUserData) => ({
-      ...previousUserData,
-      [name]: value,
-    }));
-  }
-
   async function handleSave(event) {
     event.preventDefault();
+    setSubmitted(true);
+    console.log(emailRef.current.value, passwordRef.current.value);
     if (passwordRef.current.value !== passwordVerificationRef.current.value) {
       return setError("Şifreler eşleşmiyor");
     }
@@ -30,7 +26,8 @@ function SignUp() {
     try {
       setError("");
       setloading(true);
-      await signup(userNameRef.current.value, passwordRef.current.value);
+      await signup(emailRef.current.value, passwordRef.current.value);
+      history.push("/login");
     } catch {
       setError("Kullanıcı Oluşturulamadı");
     }
@@ -57,11 +54,6 @@ function SignUp() {
                           {error}
                         </div>
                       )}
-                      {/* {alert.message && (
-                        <div className={`alert ${alert.type}`}>
-                          {alert.message}
-                        </div>
-                      )} */}
                     </div>
                     <div className="card-body border-top border-white">
                       <form onSubmit={handleSave}>
@@ -70,22 +62,13 @@ function SignUp() {
                             Kullanıcı Adı
                           </label>
                           <input
-                            type="text"
+                            type="email"
                             className="form-control border border-danger"
-                            name="name"
-                            ref={userNameRef}
+                            name="email"
+                            ref={emailRef}
+                            required
                             // eslint-disable-next-line react/jsx-no-duplicate-props
-                            className={
-                              "form-control" +
-                              (submitted && !userData.name ? " is-invalid" : "")
-                            }
                           />
-
-                          {submitted && !userData.name && (
-                            <div className="invalid-feedback">
-                              Kullanıcı adı gereklidir!
-                            </div>
-                          )}
                         </div>
                         <div className="form-group">
                           <label className="label" htmlFor="Password">
@@ -96,19 +79,9 @@ function SignUp() {
                             className="form-control"
                             name="password"
                             ref={passwordRef}
+                            required
                             // eslint-disable-next-line react/jsx-no-duplicate-props
-                            className={
-                              "form-control" +
-                              (submitted && !userData.password
-                                ? " is-invalid"
-                                : "")
-                            }
                           />
-                          {submitted && !userData.password && (
-                            <div className="invalid-feedback">
-                              Şifre gereklidir!
-                            </div>
-                          )}
                         </div>
                         <div className="form-group">
                           <label className="label" htmlFor="Password">
@@ -119,24 +92,25 @@ function SignUp() {
                             className="form-control"
                             name="password"
                             ref={passwordVerificationRef}
+                            required
                             // eslint-disable-next-line react/jsx-no-duplicate-props
-                            className={
-                              "form-control" +
-                              (submitted && !userData.password
-                                ? " is-invalid"
-                                : "")
-                            }
                           />
-                          {submitted && !userData.password && (
-                            <div className="invalid-feedback">
-                              Şifre gereklidir!
-                            </div>
-                          )}
                         </div>
                         <div className="form-group-signup">
-                          <button type="submit" className="btn btn-primary">
+                          <button
+                            disabled={loading}
+                            type="submit"
+                            className="btn btn-primary"
+                          >
                             Kayıt Ol
                           </button>
+                          <a
+                            href="/login"
+                            role="button"
+                            className="btn btn-outline-secondary btn__signup"
+                          >
+                            İptal
+                          </a>
                         </div>
                       </form>
                     </div>
