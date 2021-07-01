@@ -90,8 +90,14 @@ function UserLogin() {
                           </div>
                         )}
                       </div>
-                      <div className="form-group">
+                      <div className="form-group-signup">
                         <button className="btn btn-primary">Giriş Yap</button>
+                        <p className="text-secondary font-italic">
+                          veya hesabın yoksa
+                        </p>
+                        <a href="/signup" role="button" className="btn btn-outline-secondary btn__signup">
+                          Kayıt Ol
+                        </a>
                       </div>
                     </form>
                   </div>
