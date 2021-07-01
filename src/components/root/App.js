@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-} from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 import UserLogin from "../pages/UserLogin";
 import SignUp from "../pages/SignUp";
 import { AuthProvider } from "../../contexts/AuthContext";
@@ -13,6 +9,7 @@ import HistoricalRoom from "../../components/pages/HistoricalRoom";
 import SportRoom from "../pages/SportRoom";
 import SoftwareRoom from "../pages/SoftwareRoom";
 import MovieRoom from "../pages/MovieRoom";
+import NotFound from "../pages/NotFound";
 
 function App() {
   return (
@@ -38,6 +35,7 @@ function App() {
           <Route path="/movie-room">
             <MovieRoom />
           </Route>
+          <Route component={NotFound} />
         </Switch>
       </Router>
     </AuthProvider>
